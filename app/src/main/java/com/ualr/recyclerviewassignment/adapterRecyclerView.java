@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,12 +15,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ualr.recyclerviewassignment.model.Inbox;
 
 import java.util.List;
-import java.util.Locale;
 
 
 public class adapterRecyclerView extends RecyclerView.Adapter {
     private List<Inbox> messages;
     private Context context;
+//    private OnItemClickListener onItemClickListener;
+
+
+//    public interface OnItemClickListener {
+//        void onItemClick(View view, Inbox message, int pos);
+//    }
+//
+//    public void setOnItemClickListener(final OnItemClickListener onItemClickListener) {
+//        this.onItemClickListener = onItemClickListener;
+//    }
+
+    public void addItem(int pos, Inbox message) {
+        this.messages.add(pos, message);
+        notifyItemInserted(pos);
+    }
 
     public class messageViewHolder extends RecyclerView.ViewHolder {
         public TextView name_txtView;
@@ -39,6 +54,13 @@ public class adapterRecyclerView extends RecyclerView.Adapter {
             this.sender_initials = itemView.findViewById(R.id.sender_initials);
 
             this.lyt_parent = itemView.findViewById(R.id.lyt_parent);
+
+//            this.lyt_parent.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    onItemClickListener.onItemClick(v, messages.get(getLayoutPosition()), getLayoutPosition());
+//                }
+//            });
         }
     }
 
@@ -67,7 +89,7 @@ public class adapterRecyclerView extends RecyclerView.Adapter {
         viewHolder.email_txtView.setText(message.getEmail());
         viewHolder.name_txtView.setText(message.getFrom());
 
-        viewHolder.sender_initials.setText(message.getFrom().substring(0,1));
+        viewHolder.sender_initials.setText(message.getFrom().substring(0, 1));
     }
 
     @Override

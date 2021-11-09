@@ -15,8 +15,8 @@
         android:id="@+id/initial_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_large"
-        android:layout_marginLeft="@dimen/spacing_large"
+        android:layout_marginStart="@dimen/spacing_mlarge"
+        android:layout_marginLeft="@dimen/spacing_mlarge"
         android:layout_marginTop="@dimen/spacing_large"
         android:clickable="true"
         android:focusable="true"
@@ -47,7 +47,7 @@
         style="@style/AppTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_large"
+        android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:text="Name"
         android:textSize="14sp"
@@ -70,16 +70,15 @@
 
     <TextView
         android:id="@+id/sender_message"
-        android:layout_width="188dp"
-        android:layout_height="12dp"
-
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:ellipsize="end"
+        android:maxWidth="250dp"
         android:maxLines="1"
         android:text="Message"
         android:textSize="11sp"
         app:layout_constraintStart_toStartOf="@+id/sender_email"
         app:layout_constraintTop_toBottomOf="@+id/sender_email" />
-
 
     <TextView
         android:id="@+id/message_date"
@@ -104,4 +103,6 @@
         app:layout_constraintStart_toStartOf="@+id/sender_name"
         app:layout_constraintTop_toBottomOf="@id/sender_message"
         app:layout_constraintVertical_bias="0.0" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

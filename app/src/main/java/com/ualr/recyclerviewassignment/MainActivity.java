@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
+
 import android.os.Bundle;
 import android.view.View;
 
@@ -25,7 +25,6 @@ import java.util.List;
 // TODO 08. Create a new method to add a new item on the top of the list. Use the DataGenerator class to create the new item to be added.
 
 public class MainActivity extends AppCompatActivity {
-
     private FloatingActionButton mFAB;
     private ActivityListMultiSelectionBinding binding;
 
@@ -45,11 +44,12 @@ public class MainActivity extends AppCompatActivity {
         List<Inbox> inbox = DataGenerator.getInboxData(this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
-        this.recyclerView = (RecyclerView)binding.inboxRecycle;
+        this.recyclerView = (RecyclerView) binding.inboxRecycle;
         adapterRecyclerView adapter = new adapterRecyclerView(this, inbox);
 
         this.recyclerView.setAdapter(adapter);
         this.recyclerView.setLayoutManager(layoutManager);
+
 
         // TODO 01. Generate the item list to be displayed using the DataGenerator class
         // TODO 03. Do the setup of a new RecyclerView instance to display the item list properly
@@ -61,8 +61,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // TODO 10. Invoke the method created to a new item to the top of the list so it's
                 //  triggered when the user taps the Floating Action Button
+
+                ((adapterRecyclerView) recyclerView.getAdapter())
+                        .addItem(1, DataGenerator.getRandomInboxItem(view.getContext()));
+
             }
         });
     }
+
 
 }
