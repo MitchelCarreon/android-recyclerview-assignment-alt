@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- TODO 02. Add RecyclerView element here -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/inboxRecycle"
@@ -23,6 +22,7 @@
         android:src="@drawable/ic_add_circle_outline_24px"
         app:backgroundTint="@color/blue_500"
         app:fabSize="normal"
-        app:rippleColor="@color/blue_900" />
+        app:rippleColor="@color/blue_900"
+        android:focusable="true" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

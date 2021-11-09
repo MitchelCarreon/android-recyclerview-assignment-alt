@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.ualr.recyclerviewassignment.Utils.DataGenerator;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +49,17 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
         this.recyclerView = (RecyclerView) binding.inboxRecycle;
+
         adapterRecyclerView adapter = new adapterRecyclerView(this, inbox);
+        adapter.setOnItemClickListener(new adapterRecyclerView.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, Inbox inbox, int pos) {
+                TextView v = view.findViewById(R.id.sender_initials);
+                v.setText("X");
+                adapter.removeItem(pos);
+            }
+        });
+
 
         this.recyclerView.setAdapter(adapter);
         this.recyclerView.setLayoutManager(layoutManager);
@@ -59,11 +73,8 @@ public class MainActivity extends AppCompatActivity {
         mFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO 10. Invoke the method created to a new item to the top of the list so it's
-                //  triggered when the user taps the Floating Action Button
-
-                adapter.addItem(1, DataGenerator.getRandomInboxItem(view.getContext()));
-                recyclerView.scrollToPosition(1);
+                adapter.addItem(0, DataGenerator.getRandomInboxItem(view.getContext()));
+                recyclerView.scrollToPosition(0);
             }
         });
     }

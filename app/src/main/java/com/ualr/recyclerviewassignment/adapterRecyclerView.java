@@ -20,20 +20,26 @@ import java.util.List;
 public class adapterRecyclerView extends RecyclerView.Adapter {
     private List<Inbox> messages;
     private Context context;
-//    private OnItemClickListener onItemClickListener;
+    private OnItemClickListener onItemClickListener;
 
 
-//    public interface OnItemClickListener {
-//        void onItemClick(View view, Inbox message, int pos);
-//    }
-//
-//    public void setOnItemClickListener(final OnItemClickListener onItemClickListener) {
-//        this.onItemClickListener = onItemClickListener;
-//    }
+    public interface OnItemClickListener {
+        void onItemClick(View view, Inbox inbox, int pos);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
     public void addItem(int pos, Inbox message) {
         this.messages.add(pos, message);
         notifyItemInserted(pos);
+    }
+
+    public void removeItem(int pos) {
+        this.messages.remove(pos);
+        notifyItemRemoved(pos);
+        notifyItemRangeChanged(pos, getItemCount());
     }
 
     public class messageViewHolder extends RecyclerView.ViewHolder {
@@ -41,6 +47,8 @@ public class adapterRecyclerView extends RecyclerView.Adapter {
         public TextView email_txtView;
         public TextView message_txtView;
         public TextView date_txtView;
+
+
         public TextView sender_initials;
 
         public View lyt_parent;
@@ -55,12 +63,12 @@ public class adapterRecyclerView extends RecyclerView.Adapter {
 
             this.lyt_parent = itemView.findViewById(R.id.lyt_parent);
 
-//            this.lyt_parent.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    onItemClickListener.onItemClick(v, messages.get(getLayoutPosition()), getLayoutPosition());
-//                }
-//            });
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick(v, messages.get(getLayoutPosition()), getLayoutPosition());
+                }
+            });
         }
     }
 
