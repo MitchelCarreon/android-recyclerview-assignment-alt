@@ -11,7 +11,7 @@
         android:id="@+id/inboxRecycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none" /> <!-- no cache -->
+        android:scrollbars="vertical" /> <!-- no cache -->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

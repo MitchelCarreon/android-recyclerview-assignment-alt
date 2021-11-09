@@ -62,9 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 // TODO 10. Invoke the method created to a new item to the top of the list so it's
                 //  triggered when the user taps the Floating Action Button
 
-                ((adapterRecyclerView) recyclerView.getAdapter())
-                        .addItem(1, DataGenerator.getRandomInboxItem(view.getContext()));
-
+                adapter.addItem(1, DataGenerator.getRandomInboxItem(view.getContext()));
+                recyclerView.scrollToPosition(1);
             }
         });
     }
