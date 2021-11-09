@@ -1,4 +1,6 @@
-package com.ualr.recyclerviewassignment.model;;
+package com.ualr.recyclerviewassignment.model;
+
+;
 
 public class Inbox {
     private String from;

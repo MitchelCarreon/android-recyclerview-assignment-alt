@@ -1,10 +1,12 @@
 package com.ualr.recyclerviewassignment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +21,7 @@ import com.ualr.recyclerviewassignment.databinding.ActivityListMultiSelectionBin
 import com.ualr.recyclerviewassignment.model.Inbox;
 
 import java.util.List;
+import java.util.Objects;
 
 
 // TODO 05. Create a new Adapter class and the corresponding ViewHolder class in a different file. The adapter will be used to populate
@@ -55,18 +58,38 @@ public class MainActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new adapterRecyclerView.OnItemClickListener() {
             @Override
             public void onItemClick(View view, Inbox inbox, int pos) {
-                inbox.setSelected(true);
-                FrameLayout v = view.findViewById(R.id.initial_button);
-                TextView vi = v.findViewById(R.id.sender_initials);
-                vi.setText("X");
 
-                v.setOnClickListener(new View.OnClickListener() {
+                view.setActivated(true);
+                view.findViewById(R.id.delete_img).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.sender_initials).setVisibility(View.GONE);
+
+               for (int i =0; i < adapter.getItemCount(); ++i){
+                   Inbox message = adapter.getMessages().get(i);
+                   if (message == inbox) continue;
+                   RecyclerView.ViewHolder x =
+                           recyclerView.findViewHolderForAdapterPosition(i);
+                   if (x != null) {
+                       x.itemView.setActivated(false);
+                       x.itemView.findViewById(R.id.delete_img).setVisibility(View.GONE);
+                       x.itemView.findViewById(R.id.sender_initials).setVisibility(View.VISIBLE);
+                   }
+               }
+
+                FrameLayout initials_button = view.findViewById(R.id.initial_button);
+                initials_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        adapter.removeItem(pos);
-                        inbox.setSelected(false);
+                        if (view.isActivated()) {
+                            adapter.removeItem(pos);
+                            initials_button.setOnClickListener(null);
+
+                            view.setActivated(false);
+                            view.findViewById(R.id.delete_img).setVisibility(View.GONE);
+                            view.findViewById(R.id.sender_initials).setVisibility(View.VISIBLE);
+                        }
                     }
                 });
+
 
             }
         });

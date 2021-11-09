@@ -18,6 +18,10 @@ import java.util.List;
 
 
 public class adapterRecyclerView extends RecyclerView.Adapter {
+    public List<Inbox> getMessages() {
+        return messages;
+    }
+
     private List<Inbox> messages;
     private Context context;
     private OnItemClickListener onItemClickListener;
@@ -35,7 +39,6 @@ public class adapterRecyclerView extends RecyclerView.Adapter {
         this.messages.add(pos, message);
         notifyItemInserted(pos);
     }
-
     public void removeItem(int pos) {
         this.messages.remove(pos);
         notifyItemRemoved(pos);
@@ -47,8 +50,6 @@ public class adapterRecyclerView extends RecyclerView.Adapter {
         public TextView email_txtView;
         public TextView message_txtView;
         public TextView date_txtView;
-
-
         public TextView sender_initials;
 
         public View lyt_parent;
@@ -62,6 +63,7 @@ public class adapterRecyclerView extends RecyclerView.Adapter {
             this.sender_initials = itemView.findViewById(R.id.sender_initials);
 
             this.lyt_parent = itemView.findViewById(R.id.lyt_parent);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
