@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/lyt_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <!-- TODO 02. Add RecyclerView element here -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/inboxRecycle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" /> <!-- no cache -->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -15,9 +20,9 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"
+        android:src="@drawable/ic_add_circle_outline_24px"
         app:backgroundTint="@color/blue_500"
         app:fabSize="normal"
-        app:rippleColor="@color/blue_900"
-        app:srcCompat="@drawable/ic_add_circle_outline_24px" />
+        app:rippleColor="@color/blue_900" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

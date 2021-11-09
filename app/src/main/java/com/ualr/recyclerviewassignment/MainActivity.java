@@ -1,11 +1,21 @@
 package com.ualr.recyclerviewassignment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+
+import com.ualr.recyclerviewassignment.Utils.DataGenerator;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.ualr.recyclerviewassignment.databinding.ActivityListMultiSelectionBinding;
+import com.ualr.recyclerviewassignment.model.Inbox;
+
+import java.util.List;
+
 
 // TODO 05. Create a new Adapter class and the corresponding ViewHolder class in a different file. The adapter will be used to populate
 //  the recyclerView and manage the interaction with the items in the list
@@ -17,15 +27,30 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton mFAB;
+    private ActivityListMultiSelectionBinding binding;
+
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_multi_selection);
+        binding = ActivityListMultiSelectionBinding.inflate(getLayoutInflater());
+
+        setContentView(binding.getRoot());
         initComponent();
     }
 
     private void initComponent() {
+
+        List<Inbox> inbox = DataGenerator.getInboxData(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+
+        this.recyclerView = (RecyclerView)binding.inboxRecycle;
+        adapterRecyclerView adapter = new adapterRecyclerView(this, inbox);
+
+        this.recyclerView.setAdapter(adapter);
+        this.recyclerView.setLayoutManager(layoutManager);
+
         // TODO 01. Generate the item list to be displayed using the DataGenerator class
         // TODO 03. Do the setup of a new RecyclerView instance to display the item list properly
         // TODO 04. Define the layout of each item in the list
