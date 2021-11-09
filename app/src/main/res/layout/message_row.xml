@@ -5,16 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
 
 
     <FrameLayout
         android:id="@+id/initial_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="@dimen/spacing_large"
+        android:layout_marginLeft="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -42,8 +47,8 @@
         style="@style/AppTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
+        android:layout_marginStart="@dimen/spacing_large"
+        android:layout_marginLeft="20dp"
         android:text="Name"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -55,6 +60,7 @@
         style="@style/AppTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xsmall"
         android:text="email"
         android:textSize="12sp"
         android:textStyle="bold"
@@ -66,6 +72,7 @@
         android:id="@+id/sender_message"
         android:layout_width="188dp"
         android:layout_height="12dp"
+
         android:ellipsize="end"
         android:maxLines="1"
         android:text="Message"
@@ -79,8 +86,8 @@
         style="@style/AppTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="Date"
         android:textColor="@color/blue_200"
         android:textSize="11sp"
