@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,9 +55,19 @@ public class MainActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new adapterRecyclerView.OnItemClickListener() {
             @Override
             public void onItemClick(View view, Inbox inbox, int pos) {
-                TextView v = view.findViewById(R.id.sender_initials);
-                v.setText("X");
-                adapter.removeItem(pos);
+                inbox.setSelected(true);
+                FrameLayout v = view.findViewById(R.id.initial_button);
+                TextView vi = v.findViewById(R.id.sender_initials);
+                vi.setText("X");
+
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        adapter.removeItem(pos);
+                        inbox.setSelected(false);
+                    }
+                });
+
             }
         });
 
