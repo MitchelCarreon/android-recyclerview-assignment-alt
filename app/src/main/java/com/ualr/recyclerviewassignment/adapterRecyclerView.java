@@ -38,8 +38,6 @@ public class adapterRecyclerView extends RecyclerView.Adapter {
     public void addItem(int pos, Inbox message) {
         this.messages.add(pos, message);
         notifyItemInserted(pos);
-//        notifyItemChanged(pos);
-//        notifyItemRangeChanged(0,getItemCount());
     }
     public void removeItem(int pos) {
         this.messages.remove(pos);

@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 view.findViewById(R.id.delete_img).setVisibility(View.VISIBLE);
                 view.findViewById(R.id.sender_initials).setVisibility(View.GONE);
 
-
                 for (int i = 0; i < adapter.getItemCount(); ++i) {
                     RecyclerView.ViewHolder otherViewHolder =
                             recyclerView.findViewHolderForLayoutPosition(i);
@@ -74,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
                         otherViewHolder.itemView.setActivated(false);
                         otherViewHolder.itemView.findViewById(R.id.delete_img).setVisibility(View.GONE);
                         otherViewHolder.itemView.findViewById(R.id.sender_initials).setVisibility(View.VISIBLE);
-//                        adapter.notifyItemChanged(i);
                     }
 
                 }
@@ -85,10 +83,6 @@ public class MainActivity extends AppCompatActivity {
                         if (v.isActivated()) {
                             adapter.removeItem(adapter.getMessages().indexOf(inbox));
                             initials_button.setOnClickListener(null);
-
-                            view.setActivated(false);
-                            view.findViewById(R.id.delete_img).setVisibility(View.GONE);
-                            view.findViewById(R.id.sender_initials).setVisibility(View.VISIBLE);
                         }
                     }
                 });
