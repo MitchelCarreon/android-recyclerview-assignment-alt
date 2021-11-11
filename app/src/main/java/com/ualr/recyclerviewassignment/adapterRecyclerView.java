@@ -64,13 +64,10 @@ public class adapterRecyclerView extends RecyclerView.Adapter {
 
             this.lyt_parent = itemView.findViewById(R.id.lyt_parent);
 
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     onItemClickListener.onItemClick(v, messages.get(getLayoutPosition()), getLayoutPosition());
-
-
                 }
             });
         }
@@ -106,12 +103,11 @@ public class adapterRecyclerView extends RecyclerView.Adapter {
         viewHolder.itemView.setActivated(false);
         viewHolder.itemView.findViewById(R.id.delete_img).setVisibility(View.GONE);
         viewHolder.itemView.findViewById(R.id.sender_initials).setVisibility(View.VISIBLE);
+
     }
 
     @Override
     public int getItemCount() {
         return this.messages.size();
     }
-
-
 }
