@@ -1,5 +1,6 @@
 package com.ualr.recyclerviewassignment;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -63,24 +64,26 @@ public class MainActivity extends AppCompatActivity {
                 view.findViewById(R.id.delete_img).setVisibility(View.VISIBLE);
                 view.findViewById(R.id.sender_initials).setVisibility(View.GONE);
 
-               for (int i =0; i < adapter.getItemCount(); ++i){
-                   Inbox message = adapter.getMessages().get(i);
-                   if (message == inbox) continue;
-                   RecyclerView.ViewHolder x =
-                           recyclerView.findViewHolderForAdapterPosition(i);
-                   if (x != null) {
-                       x.itemView.setActivated(false);
-                       x.itemView.findViewById(R.id.delete_img).setVisibility(View.GONE);
-                       x.itemView.findViewById(R.id.sender_initials).setVisibility(View.VISIBLE);
-                   }
-               }
 
+                for (int i = 0; i < adapter.getItemCount(); ++i) {
+                    RecyclerView.ViewHolder otherViewHolder =
+                            recyclerView.findViewHolderForLayoutPosition(i);
+
+                    if (i == pos) continue;
+                    if (otherViewHolder != null) {
+                        otherViewHolder.itemView.setActivated(false);
+                        otherViewHolder.itemView.findViewById(R.id.delete_img).setVisibility(View.GONE);
+                        otherViewHolder.itemView.findViewById(R.id.sender_initials).setVisibility(View.VISIBLE);
+//                        adapter.notifyItemChanged(i);
+                    }
+
+                }
                 FrameLayout initials_button = view.findViewById(R.id.initial_button);
                 initials_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (view.isActivated()) {
-                            adapter.removeItem(pos);
+                        if (v.isActivated()) {
+                            adapter.removeItem(adapter.getMessages().indexOf(inbox));
                             initials_button.setOnClickListener(null);
 
                             view.setActivated(false);
@@ -89,20 +92,12 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-
             }
         });
-
 
         this.recyclerView.setAdapter(adapter);
         this.recyclerView.setLayoutManager(layoutManager);
 
-
-        // TODO 01. Generate the item list to be displayed using the DataGenerator class
-        // TODO 03. Do the setup of a new RecyclerView instance to display the item list properly
-        // TODO 04. Define the layout of each item in the list
-        // TODO 09. Create a new instance of the created Adapter class and bind it to the RecyclerView instance created in step 03
         mFAB = findViewById(R.id.fab);
         mFAB.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -38,6 +38,8 @@ public class adapterRecyclerView extends RecyclerView.Adapter {
     public void addItem(int pos, Inbox message) {
         this.messages.add(pos, message);
         notifyItemInserted(pos);
+//        notifyItemChanged(pos);
+//        notifyItemRangeChanged(0,getItemCount());
     }
     public void removeItem(int pos) {
         this.messages.remove(pos);
@@ -69,6 +71,8 @@ public class adapterRecyclerView extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     onItemClickListener.onItemClick(v, messages.get(getLayoutPosition()), getLayoutPosition());
+
+
                 }
             });
         }
@@ -100,6 +104,10 @@ public class adapterRecyclerView extends RecyclerView.Adapter {
         viewHolder.name_txtView.setText(message.getFrom());
 
         viewHolder.sender_initials.setText(message.getFrom().substring(0, 1));
+
+        viewHolder.itemView.setActivated(false);
+        viewHolder.itemView.findViewById(R.id.delete_img).setVisibility(View.GONE);
+        viewHolder.itemView.findViewById(R.id.sender_initials).setVisibility(View.VISIBLE);
     }
 
     @Override
